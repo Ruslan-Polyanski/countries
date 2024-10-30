@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 const ALL_COUNTRIES = gql`
   query {
-    countries (filter: {code: {in: "UZ"}}) {
+    countries {
       code
       name
       native
