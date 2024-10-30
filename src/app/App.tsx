@@ -7,10 +7,10 @@ const App: FC = () => {
   const { loading, error, data } = useQuery(ALL_COUNTRIES);
   console.log(data)
 
-  if(loading) {
-    return <>
+  if(true) {
+    return <div className='spinner-box'>
       <Spinner />
-    </>;
+    </div>;
   }
 
   return (
