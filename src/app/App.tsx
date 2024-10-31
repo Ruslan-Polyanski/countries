@@ -77,7 +77,9 @@ const App: FC = () => {
   return (
     <div>
       <Input handleInput={handleInput} />
-      {dataPage}
+      <div className='data-box'>
+        {dataPage}
+      </div>
     </div>
   );
 }
