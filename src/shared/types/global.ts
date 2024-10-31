@@ -4,7 +4,7 @@ export interface ICountryData {
   continent: IContinent;
   currency: string;
   emoji: string;
-  languages?: Array<ILanguage>;
+  languages: Array<ILanguage>;
   name: string;
   phone: string;
   code?: string

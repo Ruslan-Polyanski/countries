@@ -25,9 +25,22 @@ body {
   align-items: center;
 }
 
+.input-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .data-box {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: start;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 70px;
+  padding-bottom: 50px;
+}
+
+.emoji {
+  font-size: 100px;
+  text-align: center;
 }

@@ -59,6 +59,7 @@ const App: FC = () => {
           name={country.name}
           phone={country.phone}
           continent={country.continent}
+          languages={country.languages}
         />
       )
     })
@@ -71,12 +72,15 @@ const App: FC = () => {
         name={countries[countryIndex].name}
         phone={countries[countryIndex].phone}
         continent={countries[countryIndex].continent}
+        languages={countries[countryIndex].languages}
       />
   }
 
   return (
     <div>
-      <Input handleInput={handleInput} />
+      <div className='input-box'>
+        <Input handleInput={handleInput} />
+      </div>
       <div className='data-box'>
         {dataPage}
       </div>
