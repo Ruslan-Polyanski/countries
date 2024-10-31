@@ -1,12 +1,13 @@
 
 export interface ICountryData {
-  capital?: string;
-  continent?: IContinent;
-  currency?: string;
-  emoji?: string;
-  languages?: Array<ILanguage>;
-  name?: string;
-  phone?: string;
+  capital: string;
+  continent: IContinent;
+  currency: string;
+  emoji: string;
+  languages: Array<ILanguage>;
+  name: string;
+  phone: string;
+  code?: string
 }
 
 interface ILanguage {
