@@ -1,20 +1,51 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { ALL_COUNTRIES } from '../apollo/getDataCountries';
 import { Spinner } from '../shared/spinner/Spinner';
+import { CardCountry } from '../shared/cardCountry/CardCountry';
+import { ICountryData } from '../shared/types/global';
+
+interface IData {
+  countries: Array<ICountryData>
+}
 
 const App: FC = () => {
-  const { loading, error, data } = useQuery(ALL_COUNTRIES);
-  console.log(data)
+  const { loading, error, data } = useQuery<IData>(ALL_COUNTRIES);
+  const [countries, setCountries] = useState<Array<ICountryData> | undefined>([]);
+  
+  useEffect(() => {
+    if(!loading) {
+      setCountries(data?.countries)
+    }
+  }, [data])
 
   if(loading) {
-    return <>
+    return <div className='spinner-box'>
       <Spinner />
-    </>;
+    </div>;
+  }
+
+  if(error) {
+    return <h2>Error...</h2>
   }
 
   return (
-    <div></div>
+    <div>
+      <input />
+      {countries?.map(country => {
+        return (
+          <CardCountry 
+            key={country.name}
+            emoji={country.emoji}
+            capital={country.capital}
+            currency={country.currency}
+            name={country.name}
+            phone={country.phone}
+            continent={country.continent}
+          />
+        )
+      })}
+    </div>
   );
 }
 
