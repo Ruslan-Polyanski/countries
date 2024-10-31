@@ -4,6 +4,7 @@ import { ALL_COUNTRIES } from '../apollo/getDataCountries';
 import { Spinner } from '../shared/spinner/Spinner';
 import { CardCountry } from '../shared/cardCountry/CardCountry';
 import { ICountryData } from '../shared/types/global';
+import { Input } from '../shared/input/Input';
 
 interface IData {
   countries: Array<ICountryData>
@@ -31,7 +32,7 @@ const App: FC = () => {
 
   return (
     <div>
-      <input />
+      <Input />
       {countries?.map(country => {
         return (
           <CardCountry 
