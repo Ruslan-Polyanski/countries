@@ -12,7 +12,23 @@ interface IData {
 
 const App: FC = () => {
   const { loading, error, data } = useQuery<IData>(ALL_COUNTRIES);
-  const [countries, setCountries] = useState<Array<ICountryData> | undefined>([]);
+  const [ countries, setCountries ] = useState<Array<ICountryData> | undefined>([]);
+  const [ countryIndex, setContryIndex ] = useState<number>(-1);
+
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const codeCountry = event.target.value;
+    
+    const index = countries?.findIndex((country) => {
+      return country.code === codeCountry.toUpperCase();
+    })
+
+    if(index !== undefined && index >= 0) {
+      setContryIndex(index)
+    } else {
+      setContryIndex(-1)
+    }
+
+  }
   
   useEffect(() => {
     if(!loading) {
@@ -30,22 +46,38 @@ const App: FC = () => {
     return <h2>Error...</h2>
   }
 
+  let dataPage;
+
+  if(countryIndex < 0) {
+    dataPage = countries?.map(country => {
+      return (
+        <CardCountry 
+          key={country.name}
+          emoji={country.emoji}
+          capital={country.capital}
+          currency={country.currency}
+          name={country.name}
+          phone={country.phone}
+          continent={country.continent}
+        />
+      )
+    })
+  } else if(countries !== undefined) {
+    dataPage = <CardCountry 
+        key={countries[countryIndex].name}
+        emoji={countries[countryIndex].emoji}
+        capital={countries[countryIndex].capital}
+        currency={countries[countryIndex].currency}
+        name={countries[countryIndex].name}
+        phone={countries[countryIndex].phone}
+        continent={countries[countryIndex].continent}
+      />
+  }
+
   return (
     <div>
-      <Input />
-      {countries?.map(country => {
-        return (
-          <CardCountry 
-            key={country.name}
-            emoji={country.emoji}
-            capital={country.capital}
-            currency={country.currency}
-            name={country.name}
-            phone={country.phone}
-            continent={country.continent}
-          />
-        )
-      })}
+      <Input handleInput={handleInput} />
+      {dataPage}
     </div>
   );
 }

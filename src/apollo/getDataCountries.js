@@ -14,6 +14,7 @@ const ALL_COUNTRIES = gql`
         name
       }
       emoji
+      code
     }
   }
 `;
